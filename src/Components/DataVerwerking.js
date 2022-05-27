@@ -96,6 +96,11 @@ class DataVerwerking extends React.Component {
   handleClick(name) {
     console.log(name)
       const filteredData = fullData.filter(x => x.naam === name)
+      const index = uniqueNames.indexOf(name)
+      const newArray = [false, false, false, false, false, false ,false, false, false, false]
+      let newValue = newArray[index] !== true
+      newArray.splice(index, 1, newValue)
+      console.log(newArray)
       let newDiff = []
       let newFun = []
       for (var i = 0; i < uniqueTasks.length; i++) {
@@ -103,7 +108,8 @@ class DataVerwerking extends React.Component {
         newFun.push(filteredData[i].fun)
         this.setState({
           diff: {what: newDiff, toShow: false, notToShow: []}, 
-          fun: {what: newFun, toShow: false, notToShow: []}
+          fun: {what: newFun, toShow: false, notToShow: []},
+          boxes: newArray
         })
       }
   }
@@ -126,7 +132,7 @@ class DataVerwerking extends React.Component {
       fun: {what: [], toShow: true, notToShow: prevState.fun.what}}
     }) :
     this.setState({
-      fun: {what: savedFun, toShow: +false, notToShow: []}
+      fun: {what: savedFun, toShow: false, notToShow: []}
     })
   }
 
@@ -145,8 +151,6 @@ class DataVerwerking extends React.Component {
   }
   
   handleFilterChange(pos) {
-
-
       const newArray = this.state.boxes
       let newValue = newArray[pos] !== true
       newArray.splice(pos, 1, newValue)
