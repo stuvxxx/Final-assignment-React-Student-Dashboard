@@ -2,7 +2,9 @@ import React from "react";
 import Students from "../Data/Students.json"
 import Charts from "./Charts";
 import NamesList from "./Names";
-import Checkboxes from "./Checkboxes";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Student from "../Studentpages/Student";
+import Main from "../Studentpages/Main";
 
 
 // data workarounds \\
@@ -193,7 +195,21 @@ class DataVerwerking extends React.Component {
  
   render() {
     return (
-      <div>
+      <div>   <Router>
+
+              <NamesList 
+              boxes={this.state.boxes} 
+              names={uniqueNames} 
+              handleClick={this.handleClick} 
+              handleFilterChange={this.handleFilterChange}
+              handleFilterChangeSelection={this.handleFilterChangeSelection}
+              />
+                <Routes>
+                  <Route path="/" element={<Main />} />
+                  <Route path="/Main" element={<Main />} />
+                  <Route path="/Student" element={<Student />} />
+              </Routes>
+              </Router>
         <label>Filter Diff
           <input 
               onChange={() => this.handleChange("diff")} 
@@ -219,13 +235,6 @@ class DataVerwerking extends React.Component {
               format={fullData.map(x => x.opdracht)}
               dataDiff={this.state.diff.what}
               dataFun={this.state.fun.what}
-              />
-      <NamesList 
-              boxes={this.state.boxes} 
-              names={uniqueNames} 
-              handleClick={this.handleClick} 
-              handleFilterChange={this.handleFilterChange}
-              handleFilterChangeSelection={this.handleFilterChangeSelection}
               />
       </div>
     )
