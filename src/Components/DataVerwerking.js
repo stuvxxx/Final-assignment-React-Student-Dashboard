@@ -1,8 +1,8 @@
 import React from "react";
 import Students from "../Data/Students.json"
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryStack, VictoryZoomContainer } from "victory";
 import Charts from "./Charts";
 import NamesList from "./Names";
+import Checkboxes from "./Checkboxes";
 
 
 // data workarounds \\
@@ -68,6 +68,10 @@ for (i = 0; i < uniqueTasks.length; i++) {
   totalDiff.push(evelynDiff[i] + arankaDiff[i] + florisDiff[i] + hectorDiff[i] + martinaDiff[i] + mauritsDiff[i] + rahimaDiff[i] + sandraDiff[i] + wietskeDiff[i] + stormDiff[i])
   totalFun.push(evelynFun[i] + arankaFun[i] + florisFun[i] + hectorFun[i] + martinaFun[i] + mauritsFun[i] + rahimaFun[i] + sandraFun[i] + wietskeFun[i] + stormFun[i])
 }
+
+const studentDiffArray = [evelynDiff, arankaDiff, florisDiff, hectorDiff, martinaDiff, mauritsDiff, rahimaDiff, sandraDiff, wietskeDiff, stormDiff]
+const studentFunArray = [evelynFun, arankaFun, florisFun, hectorFun, martinaFun, mauritsFun, rahimaFun, sandraFun, wietskeFun, stormFun]
+
 const moderateDiff = totalDiff.map(x => x/10)
 const moderateFun = totalFun.map(x => x/10)
 const thikValueLength = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55]
@@ -78,36 +82,147 @@ class DataVerwerking extends React.Component {
   constructor() {
     super();
     this.state = {
-                  diff: moderateDiff, 
-                  fun:  moderateFun
+                  diff: {what: moderateDiff, toShow: false}, 
+                  fun:  {what: moderateFun, toShow: false},
+                  boxes: [true, true, true, true, true, true ,true, true, true, true]
+
     };
     this.handleClick = this.handleClick.bind(this)
+    this.handleFilterChange = this.handleFilterChange.bind(this)
+    this.handleFilterChangeSelection = this.handleFilterChangeSelection.bind(this)
+
   }
 
   handleClick(name) {
     console.log(name)
-    const filteredData = fullData.filter(x => x.naam === name)
-    let newDiff = []
-    let newFun = []
-    for (var i = 0; i < uniqueTasks.length; i++) {
-      newDiff.push(filteredData[i].diff)
-      newFun.push(filteredData[i].fun)
-      this.setState({
-        diff: newDiff,
-        fun: newFun 
-      })
-    }}
-  
+      const filteredData = fullData.filter(x => x.naam === name)
+      let newDiff = []
+      let newFun = []
+      for (var i = 0; i < uniqueTasks.length; i++) {
+        newDiff.push(filteredData[i].diff)
+        newFun.push(filteredData[i].fun)
+        this.setState({
+          diff: {what: newDiff, toShow: false, notToShow: []}, 
+          fun: {what: newFun, toShow: false, notToShow: []}
+        })
+      }
+  }
 
+  handleChange(mode) {
+    const savedDiff = this.state.diff.notToShow
+    const savedFun = this.state.fun.notToShow
+    mode === "diff" ? 
+    !this.state.diff.toShow ? 
+    this.setState(prevState => {
+      return {
+      diff: {what: [], toShow: true, notToShow: prevState.diff.what}}
+    }) :
+    this.setState({
+      diff: {what: savedDiff, toShow: false, notToShow: []}
+    }) : 
+    !this.state.fun.toShow ? 
+    this.setState(prevState => {
+      return {
+      fun: {what: [], toShow: true, notToShow: prevState.fun.what}}
+    }) :
+    this.setState({
+      fun: {what: savedFun, toShow: +false, notToShow: []}
+    })
+  }
+
+  handleFilterChangeSelection(pos) {
+    pos === "deselect" ? 
+    this.setState({
+      diff: {what: [], toShow: false}, 
+      fun:  {what: [], toShow: false},
+      boxes: [false, false, false, false, false, false ,false, false, false, false]
+    }) :
+    this.setState({
+      diff: {what: moderateDiff, toShow: false}, 
+      fun:  {what: moderateFun, toShow: false},
+      boxes: [true, true, true, true, true, true ,true, true, true, true]
+    }) 
+  }
+  
+  handleFilterChange(pos) {
+
+
+      const newArray = this.state.boxes
+      let newValue = newArray[pos] !== true
+      newArray.splice(pos, 1, newValue)
+      let indicies = []
+      newArray.forEach((x, index) => {
+        if(x === true) {
+          indicies.push(index)
+        }
+      })
+      let newFunTotal = []
+      let newDiffTotal = []
+      let count = this.state.boxes.filter(Boolean).length
+      if (count === 0) {
+        this.setState({
+          diff: {what: [], toShow: false}, 
+          fun:  {what: [], toShow: false},
+          boxes: [false, false, false, false, false, false ,false, false, false, false]
+        }) 
+      }
+      for(i = 0; i < indicies.length; i++ ) {
+        newDiffTotal.push(studentDiffArray[indicies[i]])
+      }
+      for(i = 0; i < indicies.length; i++ ) {
+        newFunTotal.push(studentFunArray[indicies[i]])
+      }
+      const resultFun = newFunTotal.reduce((a, b) => a.map((c, i) => c + b[i]));
+      const newModerateFun = resultFun.map(x => x/(newFunTotal.length))
+      const newModerateFunRounded = newModerateFun.map(x => Math.round(x * 10) / 10 )
+
+
+      const resultDiff = newDiffTotal.reduce((a, b) => a.map((c, i) => c + b[i]));
+      const newModerateDiff = resultDiff.map(x => x/(newDiffTotal.length))
+      const newModerateDiffRounded = newModerateDiff.map(x => Math.round(x * 10) / 10 )
+      this.setState({
+        diff: {what: newModerateDiffRounded, toShow: false},
+        fun: {what: newModerateFunRounded, toShow: false},
+        boxes: newArray
+      })
+  }
+ 
   render() {
     return (
       <div>
+        <label>Filter Diff
+          <input 
+              onChange={() => this.handleChange("diff")} 
+              type="checkbox" 
+              id="filterbox" 
+              name="toShow" 
+              checked={this.state.diff.toShow}
+          />
+          <br></br>
+          </label>
+          <label>Filter Fun
+          <input 
+              onChange={() => this.handleChange("fun")} 
+              type="checkbox" 
+              id="filterbox" 
+              name="toShow" 
+              checked={this.state.fun.toShow}
+          />
+          </label>
+
+
       <Charts values={thikValueLength} 
               format={fullData.map(x => x.opdracht)}
-              dataDiff={this.state.diff}
-              dataFun={this.state.fun}
+              dataDiff={this.state.diff.what}
+              dataFun={this.state.fun.what}
               />
-      <NamesList names={uniqueNames} onClick={this.handleClick}/>
+      <NamesList 
+              boxes={this.state.boxes} 
+              names={uniqueNames} 
+              handleClick={this.handleClick} 
+              handleFilterChange={this.handleFilterChange}
+              handleFilterChangeSelection={this.handleFilterChangeSelection}
+              />
       </div>
     )
 }
