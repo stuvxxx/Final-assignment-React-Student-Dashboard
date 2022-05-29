@@ -4,100 +4,101 @@ import React from "react";
 
 function Checkboxes(props) {
     return (
-        <div>
-            <ul>
-                <li> Evelyn
+        <div className="checkboxes-container">
+            <ul className="aap">
+                <li onClick={() => props.checkValue() && props.boxes[0] ? props.handleFilterChangeSelection("deselect") : props.handleFilterChange(0)}> 
                     <input 
-                      onChange={() => props.handleFilterChange(0)} 
                       type="checkbox" 
-                      id="filterbox" 
+                      id="filterbox0" 
                       name="boxes" 
+                      readOnly={true}
                       checked={props.boxes[0]}
-                    />    
+                    /> Evelyn 
                 </li>
-                <li> Aranka
+                <li onClick={() => props.checkValue() && props.boxes[1] ? props.handleFilterChangeSelection("deselect") : props.handleFilterChange(1)}> 
                     <input 
-                      onChange={() => props.handleFilterChange(1)} 
                       type="checkbox" 
-                      id="filterbox" 
+                      id="filterbox1" 
                       name="boxes" 
+                      readOnly={true}
                       checked={props.boxes[1]}
-                    />
+                    /> Aranka
                 </li>
-                <li> Floris
+                <li onClick={() => props.checkValue() && props.boxes[2] ? props.handleFilterChangeSelection("deselect") : props.handleFilterChange(2)}>
                     <input 
-                      onChange={() => props.handleFilterChange(2)} 
                       type="checkbox" 
-                      id="filterbox" 
+                      id="filterbox2" 
                       name="boxes" 
+                      readOnly={true}
                       checked={props.boxes[2]}
-                    />
+                    /> Floris
                 </li>
-                <li> Hector
+                <li onClick={() => props.checkValue() && props.boxes[3] ? props.handleFilterChangeSelection("deselect") : props.handleFilterChange(3)}> 
                 <input 
-                      onChange={() => props.handleFilterChange(3)} 
                       type="checkbox" 
-                      id="filterbox" 
+                      id="filterbox3" 
                       name="boxes" 
+                      readOnly={true}
                       checked={props.boxes[3]}
-                    />
+                    /> Hector
                 </li>
-                <li> Martina
-                <input 
-                      onChange={() => props.handleFilterChange(4)} 
+                <li onClick={() => props.checkValue() && props.boxes[4] ? props.handleFilterChangeSelection("deselect") : props.handleFilterChange(4)} > 
+                <input  
                       type="checkbox" 
-                      id="filterbox" 
+                      id="filterbox4" 
                       name="boxes" 
+                      readOnly={true}
                       checked={props.boxes[4]}
-                    />
+                    /> Martina
                 </li>
-                <li> Maurits
+                <li onClick={() => props.checkValue() && props.boxes[5] ? props.handleFilterChangeSelection("deselect") : props.handleFilterChange(5)}> 
                 <input 
-                      onChange={() => props.handleFilterChange(5)} 
                       type="checkbox" 
-                      id="filterbox" 
+                      id="filterbox5" 
                       name="boxes" 
+                      readOnly={true}
                       checked={props.boxes[5]}
-                    />
+                    /> Maurits
                 </li>
-                <li> Rahima
+                <li onClick={() => props.checkValue() && props.boxes[6] ? props.handleFilterChangeSelection("deselect") : props.handleFilterChange(6)}> 
                 <input 
-                      onChange={() => props.handleFilterChange(6)} 
                       type="checkbox" 
-                      id="filterbox" 
+                      id="filterbox6" 
                       name="boxes" 
+                      readOnly={true}
                       checked={props.boxes[6]}
-                    />
+                    /> Rahima
                 </li>
-                <li> Sandra
+                <li onClick={() => props.checkValue() && props.boxes[7] ? props.handleFilterChangeSelection("deselect") : props.handleFilterChange(7)} > 
                 <input 
-                      onChange={() => props.handleFilterChange(7)} 
                       type="checkbox" 
-                      id="filterbox" 
+                      id="filterbox7" 
                       name="boxes" 
+                      readOnly={true}
                       checked={props.boxes[7]}
-                    />
+                    /> Sandra
                 </li>
-                <li> Wietske
+                <li onClick={() => props.checkValue() && props.boxes[8] ? props.handleFilterChangeSelection("deselect") : props.handleFilterChange(8)}> 
                 <input 
-                      onChange={() => props.handleFilterChange(8)} 
                       type="checkbox" 
-                      id="filterbox" 
+                      id="filterbox8" 
                       name="boxes" 
+                      readOnly={true}
                       checked={props.boxes[8]}
-                    />
+                    /> Wietske
                 </li>
-                <li> Storm
-                <input 
-                      onChange={() => props.handleFilterChange(9)} 
+                <li onClick={() => props.checkValue() && props.boxes[9] ? props.handleFilterChangeSelection("deselect") : props.handleFilterChange(9)} > 
+                <input  
                       type="checkbox" 
-                      id="filterbox" 
+                      id="filterbox9" 
                       name="boxes" 
+                      readOnly={true}
                       checked={props.boxes[9]}
-                    />
+                    /> Storm
                 </li>
-
             </ul>
+            <button onClick={() => props.handleFilterChangeSelection("deselect")}>Deselect All!</button>
+            <button onClick={() => props.handleFilterChangeSelection("select")}>Select All!</button>
         </div>
     )
 }

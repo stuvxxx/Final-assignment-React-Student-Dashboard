@@ -4,133 +4,58 @@ import { Link } from "react-router-dom"
 
 function NamesList(props) {
     return (
-        <div>
+        <div className="name-list-container">
             <ul>
-            <button onClick={() => props.handleFilterChangeSelection("deselect")}>Deselect All!</button>
-                    <button onClick={() => props.handleFilterChangeSelection("select")}>Select All!</button>
-                    <br />
-
                 <li>
                     <Link to="/Student">
-                        <button onClick={() => props.handleClick("Evelyn")}>Evelyn</button>
+                        <h4 onClick={() => props.handleClick("Evelyn")}>Evelyn</h4>
                     </Link>
-                    <input 
-                      onChange={() => props.handleFilterChange(0)} 
-                      type="checkbox" 
-                      id="filterbox" 
-                      name="boxes" 
-                      checked={props.boxes[0]}
-                    />    
                 </li>
                 <li>
                     <Link to="/Student">
-                <button onClick={() => props.handleClick("Aranka")}>Aranka</button>
+                <h4 onClick={() => props.handleClick("Aranka")}>Aranka</h4>
                     </Link>
-                    <input 
-                      onChange={() => props.handleFilterChange(1)} 
-                      type="checkbox" 
-                      id="filterbox" 
-                      name="boxes" 
-                      checked={props.boxes[1]}
-                    />
                 </li>
                 <li>
                     <Link to="/Student">
-                <button onClick={() => props.handleClick("Floris")}>Floris</button>
+                <h4 onClick={() => props.handleClick("Floris")}>Floris</h4>
                     </Link>
-                    <input 
-                      onChange={() => props.handleFilterChange(2)} 
-                      type="checkbox" 
-                      id="filterbox" 
-                      name="boxes" 
-                      checked={props.boxes[2]}
-                    />
                 </li>
                 <li>
                     <Link to="/Student">
-                <button onClick={() => props.handleClick("Hector")}>Hector</button>
+                <h4 onClick={() => props.handleClick("Hector")}>Hector</h4>
                     </Link>
-                <input 
-                      onChange={() => props.handleFilterChange(3)} 
-                      type="checkbox" 
-                      id="filterbox" 
-                      name="boxes" 
-                      checked={props.boxes[3]}
-                    />
                 </li>
                 <li>
                     <Link to="/Student">
-                <button onClick={() => props.handleClick("Martina")}>Martina</button>
+                <h4 onClick={() => props.handleClick("Martina")}>Martina</h4>
                     </Link>
-                <input 
-                      onChange={() => props.handleFilterChange(4)} 
-                      type="checkbox" 
-                      id="filterbox" 
-                      name="boxes" 
-                      checked={props.boxes[4]}
-                    />
                 </li>
                 <li>
                     <Link to="/Student">
-                <button onClick={() => props.handleClick("Maurits")}>Maurits</button>
+                <h4 onClick={() => props.handleClick("Maurits")}>Maurits</h4>
                     </Link>
-                <input 
-                      onChange={() => props.handleFilterChange(5)} 
-                      type="checkbox" 
-                      id="filterbox" 
-                      name="boxes" 
-                      checked={props.boxes[5]}
-                    />
                 </li>
                 <li>
                 <Link to="/Student">
-                <button onClick={() => props.handleClick("Rahima")}>Rahima</button>
+                <h4 onClick={() => props.handleClick("Rahima")}>Rahima</h4>
                 </Link>
-                <input 
-                      onChange={() => props.handleFilterChange(6)} 
-                      type="checkbox" 
-                      id="filterbox" 
-                      name="boxes" 
-                      checked={props.boxes[6]}
-                    />
                 </li>
                 <li>
                 <Link to="/Student">
-                <button onClick={() => props.handleClick("Sandra")}>Sandra</button>
+                <h4 onClick={() => props.handleClick("Sandra")}>Sandra</h4>
                 </Link>
-                <input 
-                      onChange={() => props.handleFilterChange(7)} 
-                      type="checkbox" 
-                      id="filterbox" 
-                      name="boxes" 
-                      checked={props.boxes[7]}
-                    />
                 </li>
                 <li>
                 <Link to="/Student">
-                <button onClick={() => props.handleClick("Wietske")}>Wietske</button>
+                <h4 onClick={() => props.handleClick("Wietske")}>Wietske</h4>
                 </Link>
-                <input 
-                      onChange={() => props.handleFilterChange(8)} 
-                      type="checkbox" 
-                      id="filterbox" 
-                      name="boxes" 
-                      checked={props.boxes[8]}
-                    />
                 </li>
                 <li>
                 <Link to="/Student">
-                <button onClick={() => props.handleClick("Storm")}>Storm</button>
+                <h4 onClick={() => props.handleClick("Storm")}>Storm</h4>
                 </Link>
-                <input 
-                      onChange={() => props.handleFilterChange(9)} 
-                      type="checkbox" 
-                      id="filterbox" 
-                      name="boxes" 
-                      checked={props.boxes[9]}
-                    />
                 </li>
-
             </ul>
         </div>
     )

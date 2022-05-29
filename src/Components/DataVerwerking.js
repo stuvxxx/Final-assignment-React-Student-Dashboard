@@ -5,6 +5,8 @@ import NamesList from "./Names";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Student from "../Studentpages/Student";
 import Main from "../Studentpages/Main";
+import Checkboxes from "./Checkboxes";
+import "./styles.css"
 
 
 // data workarounds \\
@@ -92,6 +94,7 @@ class DataVerwerking extends React.Component {
     this.handleClick = this.handleClick.bind(this)
     this.handleFilterChange = this.handleFilterChange.bind(this)
     this.handleFilterChangeSelection = this.handleFilterChangeSelection.bind(this)
+    this.handleLastBox = this.handleLastBox.bind(this)
 
   }
 
@@ -178,7 +181,11 @@ class DataVerwerking extends React.Component {
       for(i = 0; i < indicies.length; i++ ) {
         newFunTotal.push(studentFunArray[indicies[i]])
       }
+
       const resultFun = newFunTotal.reduce((a, b) => a.map((c, i) => c + b[i]));
+      if (resultFun.length === 1) {
+        console.log("nu!")
+      } 
       const newModerateFun = resultFun.map(x => x/(newFunTotal.length))
       const newModerateFunRounded = newModerateFun.map(x => Math.round(x * 10) / 10 )
 
@@ -192,11 +199,18 @@ class DataVerwerking extends React.Component {
         boxes: newArray
       })
   }
+
+  handleLastBox() {
+    const checkValue = this.state.boxes.filter(Boolean).length
+    if(checkValue === 1) {
+      return true
+    }
+  }
  
   render() {
     return (
-      <div>   <Router>
-
+      <div className="wrapper">   
+              <Router>
               <NamesList 
               boxes={this.state.boxes} 
               names={uniqueNames} 
@@ -210,7 +224,8 @@ class DataVerwerking extends React.Component {
                   <Route path="/Student" element={<Student />} />
               </Routes>
               </Router>
-        <label>Filter Diff
+              <div className="filter-container">
+        <label><div className="black-box"></div>: DIFF | Don't show:
           <input 
               onChange={() => this.handleChange("diff")} 
               type="checkbox" 
@@ -220,7 +235,7 @@ class DataVerwerking extends React.Component {
           />
           <br></br>
           </label>
-          <label>Filter Fun
+          <label><div className="green-box"></div>: FUN | Don't show: 
           <input 
               onChange={() => this.handleChange("fun")} 
               type="checkbox" 
@@ -229,13 +244,17 @@ class DataVerwerking extends React.Component {
               checked={this.state.fun.toShow}
           />
           </label>
-
-
+          </div>
       <Charts values={thikValueLength} 
               format={fullData.map(x => x.opdracht)}
               dataDiff={this.state.diff.what}
               dataFun={this.state.fun.what}
               />
+      <Checkboxes boxes={this.state.boxes} 
+                  handleFilterChangeSelection={this.handleFilterChangeSelection} 
+                  handleFilterChange={this.handleFilterChange}
+                  checkValue={this.handleLastBox}
+                  />
       </div>
     )
 }
