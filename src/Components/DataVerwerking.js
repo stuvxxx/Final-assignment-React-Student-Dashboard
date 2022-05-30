@@ -188,8 +188,6 @@ class DataVerwerking extends React.Component {
       } 
       const newModerateFun = resultFun.map(x => x/(newFunTotal.length))
       const newModerateFunRounded = newModerateFun.map(x => Math.round(x * 10) / 10 )
-
-
       const resultDiff = newDiffTotal.reduce((a, b) => a.map((c, i) => c + b[i]));
       const newModerateDiff = resultDiff.map(x => x/(newDiffTotal.length))
       const newModerateDiffRounded = newModerateDiff.map(x => Math.round(x * 10) / 10 )
@@ -209,8 +207,8 @@ class DataVerwerking extends React.Component {
  
   render() {
     return (
-      <div className="wrapper">   
-              <Router>
+      <div className="wrapper">
+          <Main />   
               <NamesList 
               boxes={this.state.boxes} 
               names={uniqueNames} 
@@ -218,12 +216,6 @@ class DataVerwerking extends React.Component {
               handleFilterChange={this.handleFilterChange}
               handleFilterChangeSelection={this.handleFilterChangeSelection}
               />
-                <Routes>
-                  <Route path="/" element={<Main />} />
-                  <Route path="/Main" element={<Main />} />
-                  <Route path="/Student" element={<Student />} />
-              </Routes>
-              </Router>
               <div className="filter-container">
         <label><div className="black-box"></div>: DIFF | Don't show:
           <input 

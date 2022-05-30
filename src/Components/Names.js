@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 function NamesList(props) {
     return (
         <div className="name-list-container">
+            <h1>Students</h1>
             <ul>
                 <li>
                     <Link to="/Student">
@@ -13,48 +14,48 @@ function NamesList(props) {
                 </li>
                 <li>
                     <Link to="/Student">
-                <h4 onClick={() => props.handleClick("Aranka")}>Aranka</h4>
+                        <h4 onClick={() => props.handleClick("Aranka")}>Aranka</h4>
                     </Link>
                 </li>
                 <li>
                     <Link to="/Student">
-                <h4 onClick={() => props.handleClick("Floris")}>Floris</h4>
+                        <h4 onClick={() => props.handleClick("Floris")}>Floris</h4>
                     </Link>
                 </li>
                 <li>
                     <Link to="/Student">
-                <h4 onClick={() => props.handleClick("Hector")}>Hector</h4>
+                        <h4 onClick={() => props.handleClick("Hector")}>Hector</h4>
                     </Link>
                 </li>
                 <li>
                     <Link to="/Student">
-                <h4 onClick={() => props.handleClick("Martina")}>Martina</h4>
+                        <h4 onClick={() => props.handleClick("Martina")}>Martina</h4>
                     </Link>
                 </li>
                 <li>
                     <Link to="/Student">
-                <h4 onClick={() => props.handleClick("Maurits")}>Maurits</h4>
+                        <h4 onClick={() => props.handleClick("Maurits")}>Maurits</h4>
                     </Link>
                 </li>
                 <li>
-                <Link to="/Student">
-                <h4 onClick={() => props.handleClick("Rahima")}>Rahima</h4>
-                </Link>
+                    <Link to="/Student">
+                        <h4 onClick={() => props.handleClick("Rahima")}>Rahima</h4>
+                    </Link>
                 </li>
                 <li>
-                <Link to="/Student">
-                <h4 onClick={() => props.handleClick("Sandra")}>Sandra</h4>
-                </Link>
+                    <Link to="/Student">
+                        <h4 onClick={() => props.handleClick("Sandra")}>Sandra</h4>
+                    </Link>
                 </li>
                 <li>
-                <Link to="/Student">
-                <h4 onClick={() => props.handleClick("Wietske")}>Wietske</h4>
-                </Link>
+                    <Link to="/Student">
+                        <h4 onClick={() => props.handleClick("Wietske")}>Wietske</h4>
+                    </Link>
                 </li>
                 <li>
-                <Link to="/Student">
-                <h4 onClick={() => props.handleClick("Storm")}>Storm</h4>
-                </Link>
+                    <Link to="/Student">
+                        <h4 onClick={() => props.handleClick("Storm")}>Storm</h4>
+                    </Link>
                 </li>
             </ul>
         </div>
