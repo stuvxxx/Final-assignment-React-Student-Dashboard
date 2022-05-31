@@ -1,5 +1,5 @@
 import React from "react";
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryStack, VictoryZoomContainer, VictoryTooltip } from "victory";
+import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme, VictoryStack, VictoryTooltip } from "victory";
 
 
 

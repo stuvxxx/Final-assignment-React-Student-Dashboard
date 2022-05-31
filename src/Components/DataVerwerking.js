@@ -2,9 +2,6 @@ import React from "react";
 import Students from "../Data/Students.json"
 import Charts from "./Charts";
 import NamesList from "./Names";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Student from "../Studentpages/Student";
-import Main from "../Studentpages/Main";
 import Checkboxes from "./Checkboxes";
 import "./styles.css"
 
@@ -99,13 +96,11 @@ class DataVerwerking extends React.Component {
   }
 
   handleClick(name) {
-    console.log(name)
       const filteredData = fullData.filter(x => x.naam === name)
       const index = uniqueNames.indexOf(name)
       const newArray = [false, false, false, false, false, false ,false, false, false, false]
       let newValue = newArray[index] !== true
       newArray.splice(index, 1, newValue)
-      console.log(newArray)
       let newDiff = []
       let newFun = []
       for (var i = 0; i < uniqueTasks.length; i++) {
@@ -208,9 +203,7 @@ class DataVerwerking extends React.Component {
   render() {
     return (
       <div className="wrapper">
-          <Main />   
               <NamesList 
-              boxes={this.state.boxes} 
               names={uniqueNames} 
               handleClick={this.handleClick} 
               handleFilterChange={this.handleFilterChange}
@@ -237,15 +230,18 @@ class DataVerwerking extends React.Component {
           />
           </label>
           </div>
-      <Charts values={thikValueLength} 
-              format={fullData.map(x => x.opdracht)}
-              dataDiff={this.state.diff.what}
-              dataFun={this.state.fun.what}
+      <Charts 
+      values={thikValueLength} 
+      format={fullData.map(x => x.opdracht)}
+      dataDiff={this.state.diff.what}
+      dataFun={this.state.fun.what}
               />
-      <Checkboxes boxes={this.state.boxes} 
-                  handleFilterChangeSelection={this.handleFilterChangeSelection} 
-                  handleFilterChange={this.handleFilterChange}
-                  checkValue={this.handleLastBox}
+      <Checkboxes 
+      names={uniqueNames}
+      boxes={this.state.boxes} 
+      handleFilterChangeSelection={this.handleFilterChangeSelection} 
+      handleFilterChange={this.handleFilterChange}
+      checkValue={this.handleLastBox}
                   />
       </div>
     )
