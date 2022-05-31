@@ -6,13 +6,11 @@ import Checkboxes from "./Checkboxes";
 import "./styles.css"
 
 
-// data workarounds \\
 const fullData = Students.students.map(x => x)
 const uniqueNames = [...new Set(fullData.map(x => x.naam))]
 const uniqueTasks = [...new Set(fullData.map(x => x.opdracht))]
 let totalDiff = []
 let totalFun = []
-// people data \\
 const evelynData = fullData.filter(x => x.naam === "Evelyn")
 let evelynDiff = []
 let evelynFun = []
@@ -72,11 +70,9 @@ for (i = 0; i < uniqueTasks.length; i++) {
 
 const studentDiffArray = [evelynDiff, arankaDiff, florisDiff, hectorDiff, martinaDiff, mauritsDiff, rahimaDiff, sandraDiff, wietskeDiff, stormDiff]
 const studentFunArray = [evelynFun, arankaFun, florisFun, hectorFun, martinaFun, mauritsFun, rahimaFun, sandraFun, wietskeFun, stormFun]
-
 const moderateDiff = totalDiff.map(x => x/10)
 const moderateFun = totalFun.map(x => x/10)
 const thikValueLength = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55]
-
 
 class DataVerwerking extends React.Component {
 
@@ -92,9 +88,7 @@ class DataVerwerking extends React.Component {
     this.handleFilterChange = this.handleFilterChange.bind(this)
     this.handleFilterChangeSelection = this.handleFilterChangeSelection.bind(this)
     this.handleLastBox = this.handleLastBox.bind(this)
-
   }
-
   handleClick(name) {
       const filteredData = fullData.filter(x => x.naam === name)
       const index = uniqueNames.indexOf(name)
@@ -113,7 +107,6 @@ class DataVerwerking extends React.Component {
         })
       }
   }
-
   handleChange(mode) {
     const savedDiff = this.state.diff.notToShow
     const savedFun = this.state.fun.notToShow
@@ -135,7 +128,6 @@ class DataVerwerking extends React.Component {
       fun: {what: savedFun, toShow: false, notToShow: []}
     })
   }
-
   handleFilterChangeSelection(pos) {
     pos === "deselect" ? 
     this.setState({
@@ -149,7 +141,6 @@ class DataVerwerking extends React.Component {
       boxes: [true, true, true, true, true, true ,true, true, true, true]
     }) 
   }
-  
   handleFilterChange(pos) {
       const newArray = this.state.boxes
       let newValue = newArray[pos] !== true
@@ -192,14 +183,12 @@ class DataVerwerking extends React.Component {
         boxes: newArray
       })
   }
-
   handleLastBox() {
     const checkValue = this.state.boxes.filter(Boolean).length
     if(checkValue === 1) {
       return true
     }
   }
- 
   render() {
     return (
       <div className="wrapper">
@@ -211,7 +200,7 @@ class DataVerwerking extends React.Component {
         />
         <div className="filter-container">
           <label>
-            <div className="black-box"/>: DIFF | Don't show:
+            <div className="black-box"/>: Shows difficulty-rate | Don't show:
             <input 
             onChange={() => this.handleChange("diff")} 
             type="checkbox" 
@@ -222,7 +211,7 @@ class DataVerwerking extends React.Component {
             <br></br>
           </label>
           <label>
-            <div className="green-box"/>: FUN | Don't show: 
+            <div className="green-box"/>: Shows fun-rate | Don't show: 
             <input 
             onChange={() => this.handleChange("fun")} 
             type="checkbox" 
@@ -249,6 +238,5 @@ class DataVerwerking extends React.Component {
     )
 }
 }
-
 export default DataVerwerking
 
