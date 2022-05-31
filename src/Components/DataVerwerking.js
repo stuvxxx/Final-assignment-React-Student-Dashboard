@@ -203,46 +203,48 @@ class DataVerwerking extends React.Component {
   render() {
     return (
       <div className="wrapper">
-              <NamesList 
-              names={uniqueNames} 
-              handleClick={this.handleClick} 
-              handleFilterChange={this.handleFilterChange}
-              handleFilterChangeSelection={this.handleFilterChangeSelection}
-              />
-              <div className="filter-container">
-        <label><div className="black-box"></div>: DIFF | Don't show:
-          <input 
-              onChange={() => this.handleChange("diff")} 
-              type="checkbox" 
-              id="filterbox" 
-              name="toShow" 
-              checked={this.state.diff.toShow}
-          />
-          <br></br>
+        <NamesList 
+        names={uniqueNames} 
+        handleClick={this.handleClick} 
+        handleFilterChange={this.handleFilterChange}
+        handleFilterChangeSelection={this.handleFilterChangeSelection}
+        />
+        <div className="filter-container">
+          <label>
+            <div className="black-box"/>: DIFF | Don't show:
+            <input 
+            onChange={() => this.handleChange("diff")} 
+            type="checkbox" 
+            id="filterbox" 
+            name="toShow" 
+            checked={this.state.diff.toShow}
+            />
+            <br></br>
           </label>
-          <label><div className="green-box"></div>: FUN | Don't show: 
-          <input 
-              onChange={() => this.handleChange("fun")} 
-              type="checkbox" 
-              id="filterbox" 
-              name="toShow" 
-              checked={this.state.fun.toShow}
-          />
+          <label>
+            <div className="green-box"/>: FUN | Don't show: 
+            <input 
+            onChange={() => this.handleChange("fun")} 
+            type="checkbox" 
+            id="filterbox" 
+            name="toShow" 
+            checked={this.state.fun.toShow}
+            />
           </label>
-          </div>
-      <Charts 
-      values={thikValueLength} 
-      format={fullData.map(x => x.opdracht)}
-      dataDiff={this.state.diff.what}
-      dataFun={this.state.fun.what}
-              />
-      <Checkboxes 
-      names={uniqueNames}
-      boxes={this.state.boxes} 
-      handleFilterChangeSelection={this.handleFilterChangeSelection} 
-      handleFilterChange={this.handleFilterChange}
-      checkValue={this.handleLastBox}
-                  />
+        </div>
+        <Charts 
+        values={thikValueLength} 
+        format={fullData.map(x => x.opdracht)}
+        dataDiff={this.state.diff.what}
+        dataFun={this.state.fun.what}
+        />
+        <Checkboxes 
+        names={uniqueNames}
+        boxes={this.state.boxes} 
+        handleFilterChangeSelection={this.handleFilterChangeSelection} 
+        handleFilterChange={this.handleFilterChange}
+        checkValue={this.handleLastBox}
+        />
       </div>
     )
 }

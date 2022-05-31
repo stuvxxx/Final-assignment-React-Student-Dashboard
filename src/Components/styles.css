@@ -20,19 +20,38 @@ a {
     align-self: center;
     }
     
-    .main-container { 
+    .student-info-container { 
         display: flex;
+        flex-direction: column;
         justify-content: center;
-        grid-area: 1 / 2 / 2 / 3; 
+        align-items: center;
+        position: absolute;
+        margin-left: 50rem;
         background-color: rgba(255, 255, 255, 0.384);
-        width: 80%;
-        height: 110%;
-        align-self: center;
-        justify-self: center;
-        margin-top: 2%;
+        width: 20rem;
+        height: 12rem;
         color: rgb(0, 0, 0);
         font-family: 'Crimson Text', serif;
     }
+
+    .student-info-container h1 { 
+        margin: 0;
+    }
+
+
+    .student-info-container ul { 
+        list-style-type: none;
+        margin: 0;
+        width: 17rem;
+        background-color: rgb(255, 255, 255);
+        border: 1px green dotted;
+    }
+
+    .student-info-container ul span { 
+        font-weight: bolder;
+    }
+
+
 
     .charts-container { 
         grid-area: 2 / 2 / 3 / 3;
@@ -145,3 +164,15 @@ a {
         width: 10px;
         background-color: rgb(0, 0, 0);
     }
+
+
+    /* On screens that are 992px wide or less, go from four columns to two columns */
+@media screen and (max-width: 1200px) {
+    .student-info-container { 
+        margin-left: 30rem;
+    }
+    .checkboxes-container { 
+        font-size: 10px;
+        margin-left: 7%;
+    }
+  }
